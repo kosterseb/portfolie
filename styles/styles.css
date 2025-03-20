@@ -1,0 +1,634 @@
+@font-face {
+  font-family: "Geist Sans";
+  src: url("https://assets.codepen.io/605876/GeistVF.ttf") format("truetype");
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+}
+
+body {
+	min-height: 100vh;
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-weight: 80;
+	background: black;
+	color: hsl(0 0% 90%);
+	overflow-x: hidden;
+}
+
+p {
+  max-width: 40ch;
+}
+
+section:nth-of-type(1) {
+  scroll-snap-align: center;
+  height: 100vh;
+}
+
+section:nth-of-type(2) {
+  scroll-snap-align: start;
+}
+
+article {
+  min-height: 100vh;
+}
+
+:is(h1, h2) {
+  font-weight: 70;
+  font-size: clamp(2.5rem, 3.35vw + 1rem, 8rem);
+  letter-spacing: -0.075ch;
+  margin: 0;
+  text-shadow: 10px 5px 5px solid black;
+}
+
+h1, h2 {
+  color: antiquewhite;
+}
+
+h3 {
+  font-size: 60px;
+  font-weight: 500;
+  color: antiquewhite;
+}
+
+:is(section, article) {
+  position: relative;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* a:first-of-type {
+  width: 48px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  color: white;
+} */
+
+
+
+a:last-of-type:is(:hover, :focus-visible) {
+  background: hsl(173 100% 40%);
+}
+
+.content {
+  margin: 0 auto;
+  width: 900px;
+  max-width: 100%;
+  height: 100%;
+  z-index: 2;
+  position: relative;
+  inset: 0;
+  padding: 10rem;
+}
+
+.fixed img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  translate: -50% 0;
+  /* filter: brightness(0.5); */
+}
+
+
+section:first-of-type img {
+  left: 50%;
+  translate: -50% 0;
+}
+
+section:first-of-type {
+  padding: 2rem 1rem;
+  display: grid;
+  align-content: end;
+  justify-content: start;
+}
+
+section:first-of-type .fixed {
+  z-index: 5;
+}
+
+section:first-of-type .fixed .content {
+  margin: 0 auto;
+  width: 900px;
+  max-width: 100%;
+  display: grid;
+  align-content: center;
+  justify-content: start;
+  padding: 6rem 2rem;
+  height: 100%;
+}
+
+section:first-of-type {
+  background: rgb(255, 255, 255);
+}
+
+section:first-of-type p {
+  font-size: clamp(1rem, 0.2vw + 1rem, 2rem);
+}
+
+section:nth-of-type(2) article:first-of-type .fixed {
+  z-index: 2;
+}
+
+section:nth-of-type(2) .content {
+  display: grid;
+  padding: 4rem 1rem;
+  align-content: center;
+}
+
+section:nth-of-type(2) article:first-of-type .content {
+  align-content: end;
+}
+
+section:nth-of-type(2) article:first-of-type .fixed::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: hsl(0 0% 0% / 0.25);
+}
+
+section:nth-of-type(2) article:first-of-type h2 {
+  padding: 1rem 0;
+}
+
+section:nth-of-type(2) article:nth-of-type(2) .fixed {
+  background: black;
+  z-index: 2;
+}
+
+section:nth-of-type(2) article:nth-of-type(3) .content {
+  align-content: start;
+}
+
+section:nth-of-type(2) article:nth-of-type(3) .fixed {
+  z-index: 2;
+}
+
+section:nth-of-type(2) article:nth-of-type(3) img {
+  filter: saturate(0.5) brightness(0.5);
+}
+
+.text-blocks {
+  max-width: 100%;
+  width: 40ch;
+  justify-self: end;
+  display: grid;
+  place-items: center;
+  gap: 2rem 0;
+}
+
+/* Text block styling */
+.chat-container {
+  height: 100vh;
+  width: 50%;
+  position: sticky;
+  top: 0;
+  display: grid;
+  place-items: center;
+}
+
+.text-blocks p {
+  display: inline-block;
+  border-radius: 6px;
+  margin: 0;
+  font-size: clamp(1.5rem, 0.5vw + 1rem, 4rem);
+  font-weight: 120;
+  color: antiquewhite;
+}
+
+.text-blocks p:nth-of-type(even) {
+  justify-self: end;
+  text-align: right;
+  color: hsl(39, 100%, 74%);
+}
+
+.text-blocks p:nth-of-type(odd) {
+  justify-self: start;
+}
+
+.filler {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media(prefers-reduced-motion: no-preference){
+    article {
+      view-timeline: --article;
+    }
+
+    .fixed {
+      position: fixed;
+      inset: 0;
+    }
+
+    .static {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+    }
+
+    .filler {
+      display: block;
+      width: 100%;
+      position: absolute;
+      bottom: 30vh;
+      padding: 1rem;
+    }
+
+    .text-blocks p {
+      animation: slide-in, fade-in;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+      animation-timeline: --article;
+    }
+
+    .text-blocks p:nth-of-type(1) {
+      animation-range: entry-crossing 50% entry-crossing 55%;
+    }
+
+    .text-blocks p:nth-of-type(2) {
+      animation-range: entry-crossing 55% entry-crossing 60%;
+    }
+
+    .text-blocks p:nth-of-type(3) {
+      animation-range: entry-crossing 60% entry-crossing 65%;
+    }
+
+    .text-blocks p:nth-of-type(4) {
+      animation-range: entry-crossing 65% entry-crossing 70%;
+    }
+
+    .text-blocks p:nth-of-type(5) {
+      animation-range: entry-crossing 70% entry-crossing 75%;
+    }
+
+    .text-blocks p:nth-of-type(6) {
+      animation-range: entry-crossing 75% entry-crossing 80%;
+    }
+
+    section:nth-of-type(2) article:last-of-type {
+      z-index: 5;
+    }
+
+    section:nth-of-type(2) article:nth-of-type(3) {
+      height: 400vh;
+    }
+
+    section:nth-of-type(2) article:nth-of-type(3) h2 {
+      margin-top: 80vh;
+    }
+
+    section:nth-of-type(2) article:last-of-type .fixed {
+      clip-path: ellipse(220% 200% at 50% 300%);
+      animation: unclip both linear;
+      animation-timeline: --article;
+      animation-range: entry 20% entry 80%;
+    }
+
+    .filler h2 {
+      animation: fade-away, fade-out;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --article;
+      animation-range: exit 40% exit 75%, exit 70% exit 90%;
+    }
+
+    .loud-wrap {
+      clip-path: inset(0 0 0 0);
+      animation: unmask both linear;
+      animation-timeline: --article;
+      animation-range: entry 20% entry 80%;
+      mask: linear-gradient(white 50%, transparent) 0 100% / 100% 200% no-repeat;
+    }
+
+    .text-wrap {
+      position: sticky;
+      bottom: 4rem;
+      transform-origin: 50% 0;
+      animation: fade-away both linear, fade-out both linear;
+      animation-timeline: --article;
+      animation-range: exit 40% exit 75%, exit 70% exit 100%;
+    }
+
+    .text-blocks {
+      animation: fade-out both linear;
+      animation-timeline: --article;
+      animation-range: entry-crossing 75% entry-crossing 100%;
+    }
+
+    section:nth-of-type(2) article:nth-of-type(3) .fixed {
+      animation: fade-in both linear, fade-out both linear;
+      animation-timeline: --article, --article;
+      animation-range: entry 45% exit-crossing 0%, exit 0% exit 15%;
+    }
+
+    section:nth-of-type(2) article:nth-of-type(2) .fixed {
+      animation: fade-in;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+      animation-timeline: --article;
+      animation-range: entry 60% exit 30%;
+    }
+
+    section:nth-of-type(2) article:nth-of-type(2) h2 {
+      animation: slide-in, fade-in, fade-away, fade-out;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+      animation-timeline: view(), view(), --article, --article;
+      animation-range: entry 100% cover 25%, entry 100% cover 35%, exit 20% exit 40%, exit 40% exit 50%;
+    }
+
+    section:nth-of-type(2) article:first-of-type h2 {
+      animation: slide-up both linear;
+      animation-timeline: --article;
+      animation-range: entry 20% entry 80%;
+    }
+
+    section:nth-of-type(2) article:first-of-type img {
+      animation: scale-down both linear;
+      animation-timeline: --article;
+      animation-range: entry;
+    }
+
+    section:nth-of-type(2) article:first-of-type .fixed {
+      clip-path: ellipse(220% 200% at 50% 300%);
+      animation: unclip both linear;
+      animation-timeline: --article;
+      animation-range: entry 0 entry 100%;
+    }
+
+    section:first-of-type {
+      view-timeline: --section;
+    }
+
+    section:first-of-type .fixed {
+      animation: scale-and-move both linear, fade-out both linear;
+      animation-timeline: --section;
+      animation-range: exit 0% exit 50%, exit 0% exit 25%;
+      transform-origin: 50% 0;
+    }
+
+    /* Keyframes collection	*/
+    @keyframes slide-in {
+      0% {
+        translate: 0 100%;
+      }
+    }
+
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes slide-up {
+      0% {
+        translate: 0 100%;
+      }
+    }
+
+    @keyframes fade-away {
+      to {
+        filter: blur(4rem);
+      }
+    }
+
+    @keyframes unmask {
+      to {
+        mask-position: 0 0;
+      }
+    }
+
+    @keyframes scale-down {
+      0% {
+        scale: 5;
+      }
+    }
+
+    @keyframes unclip {
+      to {
+        clip-path: ellipse(220% 200% at 50% 175%);
+      }
+    }
+
+    @keyframes fade-out {
+      to {
+        opacity: 0;
+      }
+    }
+
+    @keyframes scale-and-move {
+      to {
+        translate: 0 -10%;
+        scale: 0.35 0.5;
+      }
+    }
+  }
+}
+
+/* Mobile Responsive Fixes */
+@media screen and (max-width: 768px) {
+  /* Core layout fixes */
+  .content {
+    padding: 2rem 1rem;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  section:first-of-type .fixed .content {
+    padding: 2rem 1rem;
+  }
+  
+  /* Typography improvements */
+  :is(h1, h2) {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.05ch;
+    word-wrap: break-word;
+  }
+  
+  h3 {
+    font-size: 2rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  /* Fix text blocks positioning */
+  /* .text-blocks {
+    width: 100%;
+    justify-self: center;
+    gap: 1rem 0;
+  } */
+  
+  .text-blocks p {
+    font-size: 1.2rem; 
+    font-weight: 600;
+    max-width: 100%;
+    padding: 0.2rem;
+    margin: 0.25rem 0;
+  }
+  
+  .text-blocks p:nth-of-type(even) {
+    margin-right: 0;
+    text-align: right;
+    padding-left: 20%;
+  }
+  
+  .text-blocks p:nth-of-type(odd) {
+    margin-left: 0;
+    padding-right: 20%;
+  } 
+  
+  /* Fix chat container */
+  /* .chat-container {
+    width: 100%;
+    height: auto;
+    position: relative;
+  } */
+  
+  /* Cards fixes */
+  .cards {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .card-content {
+    padding: 0.5rem;
+  }
+  
+  /* CV section fixes */
+  #textlast {
+    margin: 0;
+    text-align: center;
+  }
+  
+  /* Fixed section image handling */
+  .fixed img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    left: 0;
+    transform: none;
+    translate: 0 0;
+  }
+  
+  /* Improve scroll snap for better mobile experience */
+  html {
+    scroll-snap-type: y proximity;
+  }
+  
+  /* Keep CV button responsive but visible */
+  .btn1 {
+    margin: 2rem auto;
+    display: block;
+  }
+  
+  /* Make circle cards responsive */
+  .slider {
+    --width: 150px;
+    --height: 200px;
+    scale: 0.8;
+  }
+  
+  /* Videos */
+  .video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+  
+  /* Navigation adjustments */
+  nav {
+    padding: 0.5rem;
+  }
+  
+  /* Tooltip position fix */
+  .tooltip {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Animation adjustments for mobile */
+  @supports (animation-timeline: scroll()) {
+    @media(prefers-reduced-motion: no-preference){
+      section:nth-of-type(2) article:nth-of-type(3) {
+        height: 300vh;
+      }
+      
+      section:nth-of-type(2) article:nth-of-type(3) h2 {
+        margin-top: 40vh;
+      }
+    }
+  }
+}
+
+/* Galaxy S22 specific fixes (390-412px) */
+@media screen and (max-width: 412px) {
+  /* Reset previous hacky fixes and apply proper ones */
+  /* h3 {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .text-blocks p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  } */
+  
+  #textlast {
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  /* Fix the circular slider for this specific viewport */
+  .slider {
+    --width: 120px;
+    --height: 180px;
+    scale: 0.7;
+  }
+  
+  /* Info cards for the smaller screen */
+  #card1, #card2, #card3 {
+    max-width: 100%;
+    margin: 0.5rem auto;
+  }
+  
+  .card-content .card-top span.card-title {
+    font-size: 1.5rem;
+  }
+  
+  /* Fix scroll arrow position */
+  .scroll-arrow {
+    scale: 0.7;
+  }
+  
+  /* GSAP animation adjustments */
+  .text-wrap {
+    width: 100%;
+  }
+}

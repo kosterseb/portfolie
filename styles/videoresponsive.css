@@ -1,0 +1,25 @@
+/* video-responsive.css */
+.video {
+  width: 30%;
+    margin-top: 10rem;
+    margin-left: 37rem;
+    position: fixed;
+}
+
+  /* Mobile adjustments */
+  @media (max-width: 785px) {
+    .video {
+      max-width: 100%; /* Percentage of screen width on mobile */
+      margin-top: 150px; /* Add some space at the top if needed */
+      width: 400px;
+    }
+  }
+  
+  /* Extra small devices */
+  @media (max-width: 412px) {
+    .video {
+      max-width: 90%; /* Larger percentage for very small screens */
+      margin-left: 1rem;
+      margin-bottom: 150px;
+    }
+  }

@@ -1,0 +1,132 @@
+.cards {
+    width: 320px;
+    height: 450px;
+    background: #fff480;
+    color: black;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 2.5em;
+    padding: 2rem;
+    margin: 0 10px; /* Changed from margin-left: -50px to provide spacing between cards */
+    transition: transform 0.4s ease;
+    cursor: pointer;
+}
+
+/* Container for all cards */
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    margin: 2rem 0;
+}
+
+.cards .card-content {
+    display: flex;
+    gap: 22em;
+    height: 100%;
+    transition: transform 0.4s ease;
+}
+
+.cards .card-top,
+.cards .card-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cards .card-top p,
+.cards .card-top .card-title,
+.cards .card-bottom p,
+.cards .card-bottom .card-title {
+    margin: 0;
+}
+
+.cards .card-title {
+    font-weight: bold;
+}
+
+.cards .card-top p,
+.cards .card-bottom p {
+    font-weight: 600;
+}
+
+.cards .card-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+}
+
+.cards .card-image video {
+    object-fit: cover;
+    width: 300px;
+    height: 350px;
+    margin-top: 22%;
+    border-radius: 35px;
+    opacity: 0.8;
+}
+
+.cards .card-content .card-image:hover video {
+    opacity: 1;
+}
+
+#card1 {
+    position: relative;
+    background: linear-gradient(to right, #ff7e5f, #ffffff);
+}
+
+#card1:hover {
+    background: linear-gradient(to right, #e29a88, #feb47b);
+    transform: scale(1.1);
+}
+
+#card2 {
+    background: linear-gradient(to right, #ffffff, #ffffff);
+}
+
+#card2:hover {
+    background: linear-gradient(to right, #feb47b, #feb47b);
+    transform: scale(1.1);
+}
+
+#card3 {
+    background: linear-gradient(to right, #ffffff, #feb47b);
+}
+
+#card3:hover {
+    background: linear-gradient(to right, #feb47b, #ff3300);
+    transform: scale(1.1);
+}
+
+/* Media query for responsive design */
+@media screen and (max-width: 1024px) {
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cards {
+        margin: 15px 0; /* Vertical spacing between cards on mobile */
+    }
+}
+
+@media screen and (max-width: 412px) {
+    .cards {
+        width: 250px;
+        height: 350px;
+        margin: 25px auto; /* Center cards and add vertical spacing */
+    }
+    
+    .cards .card-image video {
+        width: 200px;
+        height: 250px;
+    }
+}

@@ -1,0 +1,173 @@
+body {
+    background-color: white;
+}
+
+.arrow {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: rotate(0deg);
+    animation: fadeIn2 8s;
+}
+
+.arrow:hover {
+  transform: scale(1.1);
+  
+}
+
+.arrow span {
+    display: block;
+    width: 1.5vw;
+    height: 1.5vw;
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+    transform: rotate(-45deg);
+    margin: -10px;
+    animation: animate 2s infinite;
+    
+}
+
+.arrow span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+
+.arrow span:nth-child(3) {
+    animation-delay: -0.4s;
+}
+
+/* Add to your arrow.css file */
+.scroll-arrow {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 3rem;
+    z-index: 1000;
+    opacity: 1;
+    /* animation: fadeIn 0.8s ease-in-out 1.5s forwards; */
+    cursor: pointer; /* Add cursor pointer to show it's clickable */
+    /* transition: opacity 0.5s ease-out, transform 0.3s ease-out; */
+  }
+  
+  /* Add hover effect */
+  .scroll-arrow:hover {
+    transform: scale(1.5);
+  }
+  
+  /* Your other arrow styles remain the same */
+  
+  .scroll-arrow svg {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    
+  }
+
+  .scroll-arrow h2 {
+    position: relative;
+    bottom: 1%;
+    right: 1px;
+    color: white;
+    rotate: 90deg;
+    font-size: 140%;
+  }
+  
+  .scroll-arrow path {
+    stroke: rgb(255, 255, 255);
+    stroke-width: 2;
+    fill: none;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: drawArrow 1.5s ease-in-out 2s forwards, 
+               bounce 2s ease-in-out 3.5s infinite;
+  }
+
+ 
+.scroll-arrow .fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeIn2 {
+    0%   { opacity:0; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @-o-keyframes fadeIn2{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @-moz-keyframes fadeIn2{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @-webkit-keyframes fadeIn2{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  
+  @keyframes drawArrow {
+    to { stroke-dashoffset: 0; }
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+  }
+  
+  @media (max-width: 768px) {
+    .scroll-arrow {
+      right: 1rem;
+      bottom: 2rem;
+    }
+    
+    .scroll-arrow svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+@keyframes animate {
+    0% {
+        opacity: 1;
+        transform: rotate(45deg) translate(-20px, -20px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(45deg) translate(20px, 20px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .scroll-arrow {
+        display: none;
+    }
+  
+}
+
+@media screen and (max-width: 768px) {
+    .arrow span {
+      display: block;
+    width: 20px;
+    height: 20px;
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+    transform: rotate(-45deg);
+    margin: -10px;
+    animation: animate 2s infinite;
+        
+    }
+  
+}
